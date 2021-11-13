@@ -46,4 +46,5 @@ export interface Deck {
   battleField?: Card;
   plot?: Card;
   drawDeck: { card: Card; count: number }[];
+  format: string;
 }

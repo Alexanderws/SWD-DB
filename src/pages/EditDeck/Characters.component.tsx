@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import styled from "styled-components";
 
 import { COLOR, FONT_SIZE } from "../../assets/constants";
+import { getFactionColor } from "../../assets/utils";
 import { Deck, Card } from "../../types/index";
 import { DeckContext } from "../../context/Deck.context";
 
@@ -102,21 +103,6 @@ const PointsButton = styled.input`
 
 const Characters: React.FC = () => {
   const { activeDeck, adjustPoints } = useContext(DeckContext);
-
-  const getFactionColor = (color: string) => {
-    switch (color) {
-      case "blue":
-        return COLOR.blueFaction;
-      case "red":
-        return COLOR.redFaction;
-      case "yellow":
-        return COLOR.yellowFaction;
-      case "gray":
-        return COLOR.grayFaction;
-      default:
-        return COLOR.grayFaction;
-    }
-  };
 
   return (
     <div>

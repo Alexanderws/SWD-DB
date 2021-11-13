@@ -27,6 +27,7 @@ const MainContainer = styled.div`
 
 const LeftContainer = styled.div`
   width: 100%;
+  max-width: 608px;
 `;
 const RightContainer = styled.div`
   width: 100%;

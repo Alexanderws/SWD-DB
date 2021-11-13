@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { DeckContext } from "../../context/Deck.context";
 import { Card } from "../../types/index";
 import { COLOR } from "../../assets/constants";
+import { getFactionColor } from "../../assets/utils";
 
 import { Row } from "../../components/Common.component";
 import DiceIcon from "../../components/DiceIcon.component";
@@ -110,21 +111,6 @@ const CardTable: React.FC<{ cards: Card[] }> = ({ cards }) => {
       }
       return a > b ? 1 : a < b ? -1 : 0;
     });
-  };
-
-  const getFactionColor = (color: string) => {
-    switch (color) {
-      case "blue":
-        return COLOR.blueFaction;
-      case "red":
-        return COLOR.redFaction;
-      case "yellow":
-        return COLOR.yellowFaction;
-      case "gray":
-        return COLOR.grayFaction;
-      default:
-        return COLOR.grayFaction;
-    }
   };
 
   return (

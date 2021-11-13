@@ -16,7 +16,7 @@ export const Column = styled.div`
 export const Heading2 = styled.h2`
   color: ${COLOR.blackMuted};
   font-size: ${FONT_SIZE.large};
-  font-weight: 600;
+  font-weight: 700;
   margin: 32px 0 16px;
   padding: 0;
 `;
@@ -24,7 +24,7 @@ export const Heading2 = styled.h2`
 export const Heading3 = styled.h3`
   color: ${COLOR.blueMarine};
   font-size: ${FONT_SIZE.default};
-  font-weight: 600;
+  font-weight: 700;
   margin-bottom: 8px;
   padding: 0;
 `;
@@ -32,7 +32,7 @@ export const Heading3 = styled.h3`
 const Separator = styled.div`
   width: 100%;
   height: 2px;
-  background-color: ${COLOR.blackMuted};
+  background-color: ${COLOR.white};
 `;
 
 export const LinedHeadingContainer: React.FC<{ style?: React.CSSProperties }> =

@@ -16,6 +16,7 @@ const EMPTY_DECK: Deck = {
   name: "",
   characters: [],
   drawDeck: [],
+  format: "Standard",
 };
 
 export const DeckContext = createContext<DeckContextInterface>(

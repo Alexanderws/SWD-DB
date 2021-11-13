@@ -1,23 +1,32 @@
 export const COLOR = {
   black: "#303030",
-  white: "#fff",
+  blackMuted: "#1D1D1B",
   blueFaction: "#0b609e",
+  blueFactionDark: "#094B7C",
+  blueMarine: "#234B5B",
+  brownLeather: "#412F2E",
   gray: "#999",
   grayBright: "#f4f4f4",
   grayFaction: "#979d9f",
-  redFaction: "#b22222",
-  yellowFaction: "#dab032",
-  brownAmericano: "#887371",
-  blueMarine: "#234B5B",
+  grayFactionDark: "#62686A",
   redEspresso: "#511520",
-  whitePearl: "#F7F6F6",
-  blackMuted: "#1D1D1B",
+  redFaction: "#b22222",
+  redFactionDark: "#7E1B1B",
+  yellowFaction: "#dab032",
+  yellowFactionDark: "#B18D20",
+  yellowSoft: "#ECCD54",
+  white: "#fff",
+  whitePearl: "#F4F4F1",
 };
 
 export const SEMANTIC_COLOR = {
   background: COLOR.whitePearl,
   textDark: COLOR.blackMuted,
   textBright: COLOR.white,
+  buttonPrimary: COLOR.blueFactionDark,
+  buttonSecondary: COLOR.blueFactionDark,
+  buttonCancel: COLOR.blueFactionDark,
+  buttonDestructive: COLOR.redEspresso,
 };
 
 export const FONT_SIZE = {
