@@ -3,14 +3,9 @@ import styled from "styled-components";
 
 import { COLOR, FONT_SIZE } from "../../assets/constants";
 import { getFactionColor } from "../../assets/utils";
-import { Deck, Card } from "../../types/index";
+import { Card } from "../../types/index";
 
-import {
-  LinedHeadingContainer,
-  Heading3,
-  Row,
-  Column,
-} from "../../components/Common.component";
+import { Heading3, Column } from "../../components/Common.component";
 
 const CardContainer = styled.div`
   height: 120px;

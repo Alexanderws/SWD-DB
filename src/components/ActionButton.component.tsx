@@ -1,4 +1,4 @@
-import React, { ButtonHTMLAttributes } from "react";
+import React from "react";
 import styled from "styled-components";
 
 import { COLOR, SEMANTIC_COLOR, FONT_SIZE } from "../assets/constants";

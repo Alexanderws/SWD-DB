@@ -1,14 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { useQuery } from "react-query";
+import React from "react";
 import styled from "styled-components";
 
-import { Deck, Card } from "../../types/index";
-import { fetchCards } from "../../api/fireBase";
+import { Card } from "../../types/index";
 
 import { DeckContextProvider } from "../../context/Deck.context";
 import DeckForm from "./DeckForm.component";
 import CardCollection from "./CardCollection.component";
-import { Row } from "../../components/Common.component";
 
 import { cards } from "../../awakenings.json";
 import { BREAK_POINT } from "../../assets/constants";

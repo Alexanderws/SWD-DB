@@ -88,7 +88,7 @@ const CardTable: React.FC<{ cards: Card[] }> = ({ cards }) => {
       sorted.reverse();
     }
     setSortedCards(sorted);
-  }, [cards]);
+  }, [cards, activeComparator]);
 
   const handleSortClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     const comparator = event.currentTarget.dataset.sort ?? "name";

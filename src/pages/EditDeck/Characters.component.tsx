@@ -1,9 +1,8 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 
 import { COLOR, FONT_SIZE } from "../../assets/constants";
 import { getFactionColor } from "../../assets/utils";
-import { Deck, Card } from "../../types/index";
 import { DeckContext } from "../../context/Deck.context";
 
 import { Column, Heading2 } from "../../components/Common.component";

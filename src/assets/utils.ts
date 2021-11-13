@@ -1,4 +1,4 @@
-import { COLOR, FONT_SIZE } from "./constants";
+import { COLOR } from "./constants";
 
 export const getFactionColor = (faction: string): string => {
   switch (faction) {

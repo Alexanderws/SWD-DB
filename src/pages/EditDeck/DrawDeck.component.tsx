@@ -1,7 +1,5 @@
-import React, { useContext, useState, useEffect } from "react";
-import styled from "styled-components";
+import React, { useContext } from "react";
 
-import { Deck, Card } from "../../types/index";
 import { DeckContext } from "../../context/Deck.context";
 import {
   Row,
@@ -10,16 +8,7 @@ import {
   Heading3,
 } from "../../components/Common.component";
 
-const CategoryContainer = styled.div`
-  display: flex;
-  flex-direction: row-reverse;
-  justify-content: left;
-  flex-wrap: wrap;
-  gap: 0 32px;
-`;
-
 const DrawDeck = () => {
-  const CARD_TYPES = ["event", "upgrade", "downgrade", "support"];
   const { activeDeck } = useContext(DeckContext);
 
   return (
@@ -53,7 +42,7 @@ const DrawDeck = () => {
                 </div>
               );
             } else {
-              return;
+              return null;
             }
           })}
         </Column>
@@ -84,7 +73,7 @@ const DrawDeck = () => {
                 </div>
               );
             } else {
-              return;
+              return null;
             }
           })}
         </Column>

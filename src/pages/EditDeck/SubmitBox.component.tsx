@@ -2,16 +2,9 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 
 import { COLOR, FONT_SIZE, SEMANTIC_COLOR } from "../../assets/constants";
-import { getFactionColor } from "../../assets/utils";
-import { Deck, Card } from "../../types/index";
 import { DeckContext } from "../../context/Deck.context";
 
-import {
-  LinedHeadingContainer,
-  Heading2,
-  Row,
-  Column,
-} from "../../components/Common.component";
+import { Heading2, Row } from "../../components/Common.component";
 import ActionButton from "../../components/ActionButton.component";
 
 const Container = styled.div`

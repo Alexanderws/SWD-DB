@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 
 import { COLOR, FONT_SIZE } from "../../assets/constants";
-import { Deck, Card } from "../../types/index";
 import { DeckContext } from "../../context/Deck.context";
 
 import { LinedHeadingContainer, Row } from "../../components/Common.component";
@@ -29,7 +28,7 @@ const StatsLabel = styled.h4`
 `;
 
 const DeckStats: React.FC = () => {
-  const { activeDeck, setName } = useContext(DeckContext);
+  const { activeDeck } = useContext(DeckContext);
 
   const characterPoints = activeDeck.characters.reduce((prev, slot) => {
     return prev + slot.pointsArray[slot.count - 1];
