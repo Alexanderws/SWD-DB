@@ -9,10 +9,10 @@ import Characters from "./Characters.component";
 import DrawDeck from "./DrawDeck.component";
 
 const NameInput = styled.input`
-  background-color: ${COLOR.grayBright};
+  background-color: ${COLOR.whitePearl};
   border: none;
   border-bottom: 2px solid ${COLOR.gray};
-  padding: 8px 8px 4px;
+  padding: 8px 8px 4px 0;
   line-height: 28px;
   width: 100%;
   font-size: ${FONT_SIZE.large};
@@ -23,7 +23,8 @@ const NameInput = styled.input`
     -webkit-box-shadow: 0 0 0 30px ${COLOR.grayBright} inset;
   }
   &:hover {
-    border-bottom: 2px solid ${COLOR.black};
+    border-bottom: 2px solid ${COLOR.redEspresso};
+    background-color: ${COLOR.white};
   }
 `;
 
@@ -56,8 +57,7 @@ const DeckForm: React.FC = () => {
           setName(event.currentTarget.value);
         }}
       />
-      <Characters characters={activeDeck.characters} />
-      <h3>Draw deck</h3>
+      <Characters />
       <DrawDeck />
     </div>
   );

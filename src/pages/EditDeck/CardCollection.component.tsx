@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled, { StyledComponent } from "styled-components";
 
-import { COLOR } from "../../assets/constants";
+import { COLOR, FONT_SIZE } from "../../assets/constants";
 import { Card } from "../../types/index";
 
 import CardTable from "./CardTable.component";
@@ -10,6 +10,7 @@ export const SegmentedButton: StyledComponent<
   "input",
   React.CSSProperties
 > = styled.input`
+  font-size: ${FONT_SIZE.small};
   padding: 4px 8px;
   color: ${COLOR.black};
   border: solid 1px ${COLOR.black};

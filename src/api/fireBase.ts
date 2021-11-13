@@ -12,7 +12,6 @@ import { Card, Format } from "../types/index";
 // Follow this pattern to import other Firebase services
 // import { } from 'firebase/<service>';
 
-// TODO: Replace the following with your app's Firebase project configuration
 const firebaseConfig = {
   apiKey: "AIzaSyChnksnT7HlAg3od9mDuqiQ8y5aNSi2A7s",
   authDomain: "swdestinydb-21d2e.firebaseapp.com",

@@ -42,8 +42,8 @@ export interface Format {
 export interface Deck {
   id: string;
   name: string;
-  characters: { card: Card; pointsArray: number[]; quantity: number }[];
+  characters: { card: Card; pointsArray: number[]; count: number }[];
   battleField?: Card;
   plot?: Card;
-  drawDeck: Card[];
+  drawDeck: { card: Card; count: number }[];
 }

@@ -1,11 +1,13 @@
+import "./index.css";
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import styled, { createGlobalStyle } from "styled-components";
 import { QueryClient, QueryClientProvider } from "react-query";
+
+import { SEMANTIC_COLOR } from "./assets/constants";
 
 import EditDeckPage from "./pages/EditDeck/EditDeck.container";
 // import { initializeApp } from "firebase/app";
@@ -25,9 +27,11 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 const Container = styled.div`
-  padding: 64px;
+  background-color: ${SEMANTIC_COLOR.background};
+  padding: 40px;
   width: 100%;
   height: 100%;
+  min-height: 100vh;
 `;
 
 ReactDOM.render(

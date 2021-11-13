@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="14px" height="14px" viewBox="0 0 14 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Artboard</title>
+    <g id="Artboard" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group" transform="translate(1.500000, 1.000000)" fill="#000000">
+            <polygon id="Rectangle" points="6.73072709e-14 3 5 5 5 11 6.73072709e-14 9"></polygon>
+            <polygon id="Rectangle-Copy" transform="translate(8.500000, 7.000000) scale(-1, 1) translate(-8.500000, -7.000000) " points="6 3 11 5 11 11 6 9"></polygon>
+            <polygon id="Rectangle" points="5.5 0 10.5 2 5.5 4 0.5 2"></polygon>
+        </g>
+    </g>
+</svg>

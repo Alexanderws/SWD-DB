@@ -6,6 +6,7 @@ import { Card } from "../../types/index";
 import { COLOR } from "../../assets/constants";
 
 import { Row } from "../../components/Common.component";
+import DiceIcon from "../../components/DiceIcon.component";
 
 const THCell = styled.th`
   text-align: left;
@@ -42,6 +43,13 @@ const ButtonContainer = styled.button<{ add?: boolean }>`
   &:hover  {
     cursor: pointer;
   }
+`;
+
+const FactionIcon = styled.div`
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  background-color: ${COLOR.grayFaction};
 `;
 
 const AddButtonLine = styled.div`
@@ -104,6 +112,21 @@ const CardTable: React.FC<{ cards: Card[] }> = ({ cards }) => {
     });
   };
 
+  const getFactionColor = (color: string) => {
+    switch (color) {
+      case "blue":
+        return COLOR.blueFaction;
+      case "red":
+        return COLOR.redFaction;
+      case "yellow":
+        return COLOR.yellowFaction;
+      case "gray":
+        return COLOR.grayFaction;
+      default:
+        return COLOR.grayFaction;
+    }
+  };
+
   return (
     <table style={{ width: "100%" }}>
       <thead>
@@ -124,7 +147,7 @@ const CardTable: React.FC<{ cards: Card[] }> = ({ cards }) => {
               title="Has die"
               onClick={handleSortClick}
             >
-              <span className="icon-die"></span>
+              <DiceIcon style={{ marginBottom: "-3px" }} />
             </SortButton>
           </THCell>
           <THCell className="cost">
@@ -184,12 +207,19 @@ const CardTable: React.FC<{ cards: Card[] }> = ({ cards }) => {
                   />
                 </Row>
               </TDCell>
-              <TDCell>{card.name}</TDCell>
-              <TDCell>{card.has_die}</TDCell>
+              <TDCell style={{ fontWeight: 500 }}>{card.name}</TDCell>
+              <TDCell>{card.has_die && <DiceIcon />}</TDCell>
               <TDCell>{card.cost ?? card.points ?? 0}</TDCell>
               <TDCell>{card.health ?? ""}</TDCell>
               <TDCell>{card.type_code}</TDCell>
-              <TDCell>{card.faction_code}</TDCell>
+              <TDCell>
+                <FactionIcon
+                  style={{
+                    backgroundColor: getFactionColor(card.faction_code),
+                  }}
+                />
+              </TDCell>
+              {/* <TDCell>{card.faction_code}</TDCell> */}
             </tr>
           );
         })}
