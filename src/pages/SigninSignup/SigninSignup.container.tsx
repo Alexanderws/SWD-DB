@@ -58,7 +58,6 @@ const SigninSignupPage: React.FC<{ signIn: boolean }> = ({ signIn }) => {
   };
 
   useEffect(() => {
-    console.log("activeUser: ", activeUser);
     if (activeUser) {
       navigate("/");
     }
@@ -67,61 +66,55 @@ const SigninSignupPage: React.FC<{ signIn: boolean }> = ({ signIn }) => {
   return (
     <Container>
       <FormContainer>
-        {activeUser ? (
-          <div>ALREADY SIGNED IN</div>
-        ) : (
-          <>
-            <Heading2 style={{ marginTop: 0, marginBottom: "32px" }}>
-              {signIn ? "SIGN IN" : "SIGN UP"}
-            </Heading2>
-            <InputLabel htmlFor="email">Email</InputLabel>
-            <TextInput
-              type="email"
-              name="email"
-              value={email}
-              onChange={(event) => {
-                setEmail(event.currentTarget.value);
-              }}
-              style={{ marginBottom: "32px" }}
-            />
-            <InputLabel htmlFor="password">Password</InputLabel>
-            <TextInput
-              type={showPassword ? "text" : "password"}
-              name="password"
-              value={password}
-              onChange={(event) => {
-                setPassword(event.currentTarget.value);
-              }}
-            />
-            <ShowPasswordButton
-              onClick={() => {
-                setShowpassword((prevState) => !prevState);
-              }}
-            >
-              Show/hide password
-            </ShowPasswordButton>
-            <Row
-              style={{
-                justifyContent: "space-between",
-                alignItems: "center",
-                marginTop: "64px",
-              }}
-            >
-              {signIn ? (
-                <span>
-                  Not registered? <Link to="/signup">Sign up</Link>
-                </span>
-              ) : (
-                <span>
-                  Already registered? <Link to="/signin">Sign in</Link>
-                </span>
-              )}
-              <ActionButton onClick={handleSubmitClick}>
-                {signIn ? "SIGN IN" : "SIGN UP"}
-              </ActionButton>
-            </Row>
-          </>
-        )}
+        <Heading2 style={{ marginTop: 0, marginBottom: "32px" }}>
+          {signIn ? "SIGN IN" : "SIGN UP"}
+        </Heading2>
+        <InputLabel htmlFor="email">Email</InputLabel>
+        <TextInput
+          type="email"
+          name="email"
+          value={email}
+          onChange={(event) => {
+            setEmail(event.currentTarget.value);
+          }}
+          style={{ marginBottom: "32px" }}
+        />
+        <InputLabel htmlFor="password">Password</InputLabel>
+        <TextInput
+          type={showPassword ? "text" : "password"}
+          name="password"
+          value={password}
+          onChange={(event) => {
+            setPassword(event.currentTarget.value);
+          }}
+        />
+        <ShowPasswordButton
+          onClick={() => {
+            setShowpassword((prevState) => !prevState);
+          }}
+        >
+          Show/hide password
+        </ShowPasswordButton>
+        <Row
+          style={{
+            justifyContent: "space-between",
+            alignItems: "center",
+            marginTop: "64px",
+          }}
+        >
+          {signIn ? (
+            <span>
+              Not registered? <Link to="/signup">Sign up</Link>
+            </span>
+          ) : (
+            <span>
+              Already registered? <Link to="/signin">Sign in</Link>
+            </span>
+          )}
+          <ActionButton onClick={handleSubmitClick}>
+            {signIn ? "SIGN IN" : "SIGN UP"}
+          </ActionButton>
+        </Row>
       </FormContainer>
     </Container>
   );

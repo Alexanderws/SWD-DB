@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import styled from "styled-components";
 
 import { DeckContext } from "../../context/Deck.context";
+import { ModalContext } from "../../context/Modal.context";
 import { Card } from "../../types/index";
 import { COLOR } from "../../assets/constants";
 import { getFactionColor } from "../../assets/utils";
@@ -81,13 +82,13 @@ const CardTable: React.FC<{ cards: Card[] }> = ({ cards }) => {
   ]);
 
   const { addCard, removeCard } = useContext(DeckContext);
+  const { showModal, hideModal } = useContext(ModalContext);
 
   useEffect(() => {
-    let sorted = sortCards(cards, activeComparator[0]);
-    if (!activeComparator[1]) {
-      sorted.reverse();
-    }
-    setSortedCards(sorted);
+    let sortedCards = sortCards(cards, activeComparator[0]);
+    setSortedCards(
+      activeComparator[1] ? sortedCards : [...sortedCards].reverse()
+    );
   }, [cards, activeComparator]);
 
   const handleSortClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -193,7 +194,15 @@ const CardTable: React.FC<{ cards: Card[] }> = ({ cards }) => {
                   />
                 </Row>
               </TDCell>
-              <TDCell style={{ fontWeight: 500 }}>{card.name}</TDCell>
+              <TDCell
+                style={{ fontWeight: 500 }}
+                onMouseEnter={() => {
+                  showModal(card);
+                }}
+                onMouseLeave={hideModal}
+              >
+                {card.name}
+              </TDCell>
               <TDCell>{card.has_die && <DiceIcon />}</TDCell>
               <TDCell>{card.cost ?? card.points ?? 0}</TDCell>
               <TDCell>{card.health ?? ""}</TDCell>

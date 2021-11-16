@@ -3,7 +3,6 @@ import "./assets/fonts/icons.css";
 
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import styled, { createGlobalStyle } from "styled-components";
@@ -11,16 +10,15 @@ import { QueryClient, QueryClientProvider } from "react-query";
 
 import { SEMANTIC_COLOR } from "./assets/constants";
 
+import { FormatContextProvider } from "./context/Format.context";
+import { ModalContextProvider } from "./context/Modal.context";
 import { AuthContextProvider } from "./context/Auth.context";
 import Header from "./components/Header.component";
 import Footer from "./components/Footer.component";
+import DeckList from "./pages/DeckList/DeckList.container";
 import EditDeckPage from "./pages/EditDeck/EditDeck.container";
 import SigninSignupPage from "./pages/SigninSignup/SigninSignup.container";
-// import { initializeApp } from "firebase/app";
-
-// import { firebaseConfig } from "./config";
-
-// initializeApp(firebaseConfig);
+import CardModal from "./components/CardModal.component";
 
 const queryClient = new QueryClient();
 
@@ -48,28 +46,37 @@ ReactDOM.render(
   <React.StrictMode>
     <GlobalStyle />
     <AuthContextProvider>
-      <QueryClientProvider client={queryClient}>
-        <Container>
-          <BrowserRouter>
-            <Header />
-            <InnerContainer>
-              <Routes>
-                <Route path="/" element={<App />} />
-                <Route path="deck" element={<EditDeckPage />} />
-                <Route
-                  path="signin"
-                  element={<SigninSignupPage signIn={true} />}
-                />
-                <Route
-                  path="signup"
-                  element={<SigninSignupPage signIn={false} />}
-                />
-              </Routes>
-            </InnerContainer>
-            <Footer />
-          </BrowserRouter>
-        </Container>
-      </QueryClientProvider>
+      <ModalContextProvider>
+        <FormatContextProvider>
+          <QueryClientProvider client={queryClient}>
+            <Container>
+              <CardModal />
+              <BrowserRouter>
+                <Header />
+                <InnerContainer>
+                  <Routes>
+                    <Route
+                      path="/"
+                      element={<SigninSignupPage signIn={false} />}
+                    />
+                    <Route path="deck" element={<EditDeckPage />} />
+                    <Route
+                      path="signin"
+                      element={<SigninSignupPage signIn={true} />}
+                    />
+                    <Route
+                      path="signup"
+                      element={<SigninSignupPage signIn={false} />}
+                    />
+                    <Route path="decks" element={<DeckList />} />
+                  </Routes>
+                </InnerContainer>
+                <Footer />
+              </BrowserRouter>
+            </Container>
+          </QueryClientProvider>
+        </FormatContextProvider>
+      </ModalContextProvider>
     </AuthContextProvider>
   </React.StrictMode>,
   document.getElementById("root")

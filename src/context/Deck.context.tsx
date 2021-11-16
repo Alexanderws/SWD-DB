@@ -6,6 +6,7 @@ import { Deck, Card } from "../types/index";
 interface DeckContextInterface {
   activeDeck: Deck;
   setId: (id: string) => void;
+  setFormat: (formatCode: string) => void;
   loadDeck: (id: string) => void;
   resetDeck: () => void;
   addCard: (card: Card) => void;
@@ -19,7 +20,7 @@ const EMPTY_DECK: Deck = {
   name: "",
   characters: [],
   drawDeck: [],
-  format: "Standard",
+  formatCode: "STD",
 };
 
 export const DeckContext = createContext<DeckContextInterface>(
@@ -35,6 +36,15 @@ export const DeckContextProvider: React.FC = (props) => {
       return {
         ...prevState,
         id: uuidv4(),
+      };
+    });
+  };
+
+  const setFormat = (formatCode: string) => {
+    setActiveDeck((prevState) => {
+      return {
+        ...prevState,
+        formatCode: formatCode,
       };
     });
   };
@@ -122,7 +132,6 @@ export const DeckContextProvider: React.FC = (props) => {
           const currentCount =
             prevState.drawDeck.find((cardSlot) => cardSlot.card === card)
               ?.count ?? 0;
-          console.log(`card: ${card.name} - currentCount: ${currentCount}`);
           if (add) {
             if (currentCount > 0) {
               let newDrawDeck = prevState.drawDeck.map((slot) => {
@@ -131,7 +140,6 @@ export const DeckContextProvider: React.FC = (props) => {
                 }
                 return slot;
               });
-              console.log("newDrawdeck:", newDrawDeck);
               return {
                 ...prevState,
                 drawDeck: newDrawDeck,
@@ -206,6 +214,7 @@ export const DeckContextProvider: React.FC = (props) => {
   const initialContext: DeckContextInterface = {
     activeDeck: activeDeck,
     setId: setId,
+    setFormat: setFormat,
     loadDeck: loadDeck,
     resetDeck: resetDeck,
     addCard: addCard,

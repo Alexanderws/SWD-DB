@@ -46,12 +46,29 @@ export interface Deck {
   battleField?: Card;
   plot?: Card;
   drawDeck: { card: Card; count: number }[];
-  format: string;
+  formatCode: string;
   notes?: string;
+}
+
+export interface DestinySet {
+  cgdb_id_end?: number;
+  cgdb_id_start?: number;
+  code: string;
+  cycle_code: string;
+  date_release: string;
+  name: string;
+  position: number;
+  project_name?: string;
+  size: number;
 }
 
 export interface Character {
   card: Card;
   pointsArray: number[];
   count: number;
+}
+
+interface DeckStored {
+  deck: Deck;
+  isPublic: boolean;
 }

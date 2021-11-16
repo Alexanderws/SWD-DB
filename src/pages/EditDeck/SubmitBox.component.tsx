@@ -1,12 +1,14 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
 import { v4 as uuidv4 } from "uuid";
+import { useNavigate } from "react-router";
 
 import { COLOR, FONT_SIZE, SEMANTIC_COLOR } from "../../assets/constants";
 import { DeckContext } from "../../context/Deck.context";
+import { FormatContext } from "../../context/Format.context";
 import { Deck } from "../../types/index";
 
-import { Heading2, Row } from "../../components/Common.component";
+import { Heading3, Row } from "../../components/Common.component";
 import ActionButton from "../../components/ActionButton.component";
 import { saveDeck } from "../../api/fireBase";
 
@@ -20,7 +22,7 @@ const Container = styled.div`
 `;
 
 const NameInput = styled.input`
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.1);
   border: none;
   font-family: "Open Sans", sans-serif;
   border-bottom: 2px solid ${SEMANTIC_COLOR.textBright};
@@ -30,18 +32,57 @@ const NameInput = styled.input`
   width: 100%;
   font-size: ${FONT_SIZE.large};
   font-weight: 600;
+  margin-bottom: 16px;
 
   &:-webkit-autofill {
     box-shadow: none;
-    -webkit-box-shadow: 0 0 0 30px rgba(255, 255, 255, 0.2) inset;
+    -webkit-box-shadow: 0 0 0 30px rgba(255, 255, 255, 0.1) inset;
   }
   &:hover {
-    background-color: rgba(255, 255, 255, 0.4);
+    background-color: rgba(255, 255, 255, 0.2);
   }
 `;
 
+const FormatRowContainer = styled.div`
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  flex-direction: row;
+  height: 26px;
+  display: flex;
+  justify-content: space-between;
+`;
+
+const FormatButton = styled.button`
+  border: none;
+  height: 100%;
+  width: 20%;
+  display: inline-block;
+  text-align: center;
+  color: ${COLOR.white};
+  margin: 0;
+  font-weight: 500;
+  cursor: pointer;
+  background-color: transparent;
+
+  :focus {
+    outline: 1px solid ${COLOR.gray};
+  }
+
+  :hover {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+
+  ${({ defaultChecked }) =>
+    defaultChecked
+      ? "background-color: rgba(255, 255, 255, 0.3); font-weight: 600; border-radius: 4px;"
+      : ""};
+`;
+
 const SubmitBox: React.FC = () => {
-  const { activeDeck, setName, resetDeck } = useContext(DeckContext);
+  const { activeDeck, setFormat, setName, resetDeck } = useContext(DeckContext);
+  const { allFormats } = useContext(FormatContext);
+
+  const navigate = useNavigate();
 
   const handleSubmitClick = () => {
     // VALIDATE
@@ -49,16 +90,16 @@ const SubmitBox: React.FC = () => {
       ...activeDeck,
       id: activeDeck.id.length === 0 ? uuidv4() : activeDeck.id,
     };
-    console.log("handleSubmitClick - deckToSave.id:", deckToSave.id);
     saveDeck(deckToSave);
     resetDeck();
+    navigate("/decks");
   };
 
   return (
     <Container>
-      <Heading2 style={{ marginTop: 0, color: SEMANTIC_COLOR.textBright }}>
+      <Heading3 style={{ color: SEMANTIC_COLOR.textBright }}>
         DECK NAME
-      </Heading2>
+      </Heading3>
       <NameInput
         maxLength={60}
         name="deck-name"
@@ -67,7 +108,24 @@ const SubmitBox: React.FC = () => {
           setName(event.currentTarget.value);
         }}
       />
-      <Row style={{ justifyContent: "space-between", marginTop: "32px" }}>
+      <Heading3 style={{ color: SEMANTIC_COLOR.textBright }}>FORMAT</Heading3>
+      <FormatRowContainer>
+        {allFormats.map((format) => {
+          return (
+            <FormatButton
+              key={format.code}
+              onClick={() => {
+                setFormat(format.code);
+              }}
+              value={format.name}
+              defaultChecked={activeDeck.formatCode === format.code}
+            >
+              {format.name}
+            </FormatButton>
+          );
+        })}
+      </FormatRowContainer>
+      <Row style={{ justifyContent: "space-between", marginTop: "48px" }}>
         <ActionButton type="cancel" onClick={() => {}}>
           CANCEL
         </ActionButton>

@@ -45,7 +45,7 @@ const TitleContainer = styled.div`
   font-weight: 600;
 `;
 
-const HorizontanCardDisplay: React.FC<{ card?: Card }> = ({ card }) => {
+const HorizontalCardDisplay: React.FC<{ card?: Card }> = ({ card }) => {
   const [imageUrl, setImageUrl] = useState("");
 
   useEffect(() => {
@@ -53,6 +53,8 @@ const HorizontanCardDisplay: React.FC<{ card?: Card }> = ({ card }) => {
       getImageUrl(card.set_code, card.code).then((url) => {
         setImageUrl(url);
       });
+    } else {
+      setImageUrl("");
     }
   }, [card]);
 
@@ -77,4 +79,4 @@ const HorizontanCardDisplay: React.FC<{ card?: Card }> = ({ card }) => {
   );
 };
 
-export default HorizontanCardDisplay;
+export default HorizontalCardDisplay;

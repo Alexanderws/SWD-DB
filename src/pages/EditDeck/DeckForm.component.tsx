@@ -8,7 +8,7 @@ import SubmitBox from "./SubmitBox.component";
 
 const DeckForm: React.FC = () => {
   return (
-    <div style={{ width: "fit-content" }}>
+    <div>
       <SectionContainer>
         <Heading2>DETAILS</Heading2>
         <DeckOverview />

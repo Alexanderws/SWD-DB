@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 import { COLOR, FONT_SIZE } from "../../assets/constants";
 import { DeckContext } from "../../context/Deck.context";
+import { FormatContext } from "../../context/Format.context";
 
 import { Column, Row } from "../../components/Common.component";
 import HorizontalCardDisplay from "./HorizontalCardDisplay.component";
@@ -44,6 +45,7 @@ const StatsField = styled.p`
 
 const DeckOverview: React.FC = () => {
   const { activeDeck } = useContext(DeckContext);
+  const { getSetName, getFormatName } = useContext(FormatContext);
 
   const characterPoints = activeDeck.characters.reduce((prev, slot) => {
     return prev + slot.pointsArray[slot.count - 1];
@@ -92,7 +94,9 @@ const DeckOverview: React.FC = () => {
               dice
             </StatsField>
             <StatsField>
-              <span style={{ fontWeight: 600 }}>{activeDeck.format}</span>
+              <span style={{ fontWeight: 600 }}>
+                {getFormatName(activeDeck.formatCode)}
+              </span>
             </StatsField>
             <div
               style={{
@@ -104,7 +108,9 @@ const DeckOverview: React.FC = () => {
               }}
             >
               {Array.from(new Set(includedSets)).map((set) => {
-                return <span style={{ fontWeight: 600 }}>{set}</span>;
+                return (
+                  <span style={{ fontWeight: 600 }}>{getSetName(set)}</span>
+                );
               })}
             </div>
           </Column>

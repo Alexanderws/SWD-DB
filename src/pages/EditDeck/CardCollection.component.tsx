@@ -70,6 +70,7 @@ const CardCollection: React.FC<{ cards: Card[] }> = ({ cards }) => {
     "support",
     "event",
   ];
+
   const handleAffiliationClick = (
     event: React.MouseEvent<HTMLInputElement>
   ) => {

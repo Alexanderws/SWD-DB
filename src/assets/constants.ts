@@ -33,6 +33,7 @@ export const SEMANTIC_COLOR = {
   footer: COLOR.gray,
   infoBox: COLOR.gray,
   actionBox: COLOR.blueFactionDark,
+  boxShadow: COLOR.grayDark,
 };
 
 export const FONT_SIZE = {
@@ -47,4 +48,8 @@ export const BREAK_POINT = {
   xLarge: "1200px",
   large: "1024px",
   medium: "768px",
+};
+
+export const Z_INDEX = {
+  modal: "999",
 };

@@ -12,7 +12,7 @@ import {
 import { getAuth } from "firebase/auth";
 import { ref, getStorage, getDownloadURL } from "firebase/storage";
 
-import { Card, Deck, Format } from "../types/index";
+import { Card, Deck, Format, DestinySet } from "../types/index";
 // Follow this pattern to import other Firebase services
 // import { } from 'firebase/<service>';
 
@@ -62,10 +62,18 @@ export const getFormats = async (): Promise<Format[]> => {
   return formatList as Format[];
 };
 
+export const getSets = async (): Promise<DestinySet[]> => {
+  const setRef = collection(firestoreDB, "sets");
+  const setSnapshot = await getDocs(setRef);
+  const setList = setSnapshot.docs.map((doc) => doc.data());
+  return setList as DestinySet[];
+};
+
 export const getImageUrl = async (
   set: string,
   cardId: string
 ): Promise<string> => {
+  console.log(`getImageUrl - set: ${set} - cardId: ${cardId} `);
   let imageUrl = "";
   try {
     imageUrl = await getDownloadURL(
@@ -86,7 +94,7 @@ export const saveDeck = async (deck: Deck) => {
   if (userId) {
     try {
       await setDoc(doc(firestoreDB, `users/${userId}/decks`, deck.id), {
-        deck: deck,
+        ...deck,
       });
     } catch (error) {
       let errorMessage = "Unknown error";
@@ -96,4 +104,26 @@ export const saveDeck = async (deck: Deck) => {
       console.log("ERROR - saveDeck: ", errorMessage);
     }
   }
+};
+
+export const getDecks = async (): Promise<Deck[]> => {
+  const userId = firebaseAuth.currentUser?.uid;
+  let deckList: Deck[] = [];
+  console.log(`getDecks - userId: ${userId}`);
+  if (userId) {
+    console.log(`getDecks - userId: ${userId}`);
+    try {
+      const decksRef = collection(firestoreDB, `users/${userId}/decks`);
+      const decksSnapshot = await getDocs(decksRef);
+      const deckList2 = decksSnapshot.docs.map((doc) => doc.data());
+      return deckList2 as Deck[];
+    } catch (error) {
+      let errorMessage = "Unknown error";
+      if (error instanceof Error) {
+        errorMessage = error.message;
+      }
+      console.log("ERROR - getDecks: ", errorMessage);
+    }
+  }
+  return deckList;
 };
