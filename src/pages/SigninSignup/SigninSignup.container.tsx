@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
 
-import { COLOR, SEMANTIC_COLOR, FONT_SIZE } from "../../assets/constants";
+import { COLOR } from "../../assets/constants";
 import { AuthContext } from "../../context/Auth.context";
 
 import {
@@ -62,7 +62,7 @@ const SigninSignupPage: React.FC<{ signIn: boolean }> = ({ signIn }) => {
     if (activeUser) {
       navigate("/");
     }
-  }, [activeUser]);
+  }, [activeUser, navigate]);
 
   return (
     <Container>

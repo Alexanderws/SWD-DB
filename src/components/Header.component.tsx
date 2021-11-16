@@ -3,11 +3,9 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 import { COLOR, FONT_SIZE, SEMANTIC_COLOR } from "../assets/constants";
-import { getFactionColor } from "../assets/utils";
-import { DeckContext } from "../context/Deck.context";
 
 import DagobahIcon from "../components/DagobahIcon.component";
-import { Column, Row, Heading2 } from "../components/Common.component";
+import { Column, Row } from "../components/Common.component";
 import { AuthContext } from "../context/Auth.context";
 
 const Container = styled.div`

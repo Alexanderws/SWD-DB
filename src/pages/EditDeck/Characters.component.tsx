@@ -9,7 +9,6 @@ import { getImageUrl } from "../../api/fireBase";
 
 import { Column, Heading2 } from "../../components/Common.component";
 import DiceIcon from "../../components/DiceIcon.component";
-import { url } from "inspector";
 
 const CharacterRow = styled.div`
   display: flex;
@@ -159,7 +158,7 @@ const CharacterCard: React.FC<{
 };
 
 const Characters: React.FC = () => {
-  const { activeDeck, adjustPoints } = useContext(DeckContext);
+  const { activeDeck } = useContext(DeckContext);
 
   return (
     <div>

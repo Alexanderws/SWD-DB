@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import { v4 as uuidv4 } from "uuid";
 
@@ -41,7 +41,7 @@ const NameInput = styled.input`
 `;
 
 const SubmitBox: React.FC = () => {
-  const { activeDeck, setName, setId, resetDeck } = useContext(DeckContext);
+  const { activeDeck, setName, resetDeck } = useContext(DeckContext);
 
   const handleSubmitClick = () => {
     // VALIDATE
