@@ -81,7 +81,7 @@ const CardTable: React.FC<{ cards: Card[] }> = ({ cards }) => {
     true,
   ]);
 
-  const { addCard, removeCard } = useContext(DeckContext);
+  const { activeDeck, addCard, removeCard } = useContext(DeckContext);
   const { showModal, hideModal } = useContext(ModalContext);
 
   useEffect(() => {
@@ -100,6 +100,25 @@ const CardTable: React.FC<{ cards: Card[] }> = ({ cards }) => {
       setActiveComparator([comparator, true]);
       setSortedCards((prevState) => sortCards(prevState, comparator));
     }
+  };
+
+  const getCountOfCard = (card: Card): number => {
+    if (card.type_code === "character") {
+      const character = activeDeck.characters.find(
+        (char) => char.card.code === card.code
+      );
+      return character?.count ?? 0;
+    }
+    if (card.type_code === "battlefield") {
+      return activeDeck.battleField?.code === card.code ? 1 : 0;
+    }
+    if (card.type_code === "plot") {
+      return activeDeck.plot?.code === card.code ? 1 : 0;
+    }
+    const cardInDeck = activeDeck.drawDeck.find(
+      (slot) => slot.card.code === card.code
+    );
+    return cardInDeck?.count ?? 0;
   };
 
   const sortCards = (cardsToSort: Card[], comparator: string): Card[] => {
@@ -186,6 +205,9 @@ const CardTable: React.FC<{ cards: Card[] }> = ({ cards }) => {
                       removeCard(card);
                     }}
                   />
+                  <span style={{ margin: "0 4px", fontWeight: 600 }}>
+                    {getCountOfCard(card)}/{card.deck_limit}
+                  </span>
                   <AddRemoveButton
                     add={true}
                     onClick={() => {
