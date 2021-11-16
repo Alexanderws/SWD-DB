@@ -42,9 +42,16 @@ export interface Format {
 export interface Deck {
   id: string;
   name: string;
-  characters: { card: Card; pointsArray: number[]; count: number }[];
+  characters: Character[];
   battleField?: Card;
   plot?: Card;
   drawDeck: { card: Card; count: number }[];
   format: string;
+  notes?: string;
+}
+
+export interface Character {
+  card: Card;
+  pointsArray: number[];
+  count: number;
 }

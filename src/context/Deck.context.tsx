@@ -1,10 +1,13 @@
 import React, { useState, createContext } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 import { Deck, Card } from "../types/index";
 
 interface DeckContextInterface {
   activeDeck: Deck;
+  setId: (id: string) => void;
   loadDeck: (id: string) => void;
+  resetDeck: () => void;
   addCard: (card: Card) => void;
   removeCard: (card: Card) => void;
   adjustPoints: (characterIndex: number, count: number) => void;
@@ -27,8 +30,21 @@ DeckContext.displayName = "DeckContext";
 export const DeckContextProvider: React.FC = (props) => {
   const [activeDeck, setActiveDeck] = useState<Deck>(EMPTY_DECK);
 
+  const setId = (id: string) => {
+    setActiveDeck((prevState) => {
+      return {
+        ...prevState,
+        id: uuidv4(),
+      };
+    });
+  };
+
   const loadDeck = (id: string) => {
     // load deck from db, set as active
+  };
+
+  const resetDeck = () => {
+    setActiveDeck(EMPTY_DECK);
   };
 
   const getPointsArray = (points: string): number[] => {
@@ -189,7 +205,9 @@ export const DeckContextProvider: React.FC = (props) => {
 
   const initialContext: DeckContextInterface = {
     activeDeck: activeDeck,
+    setId: setId,
     loadDeck: loadDeck,
+    resetDeck: resetDeck,
     addCard: addCard,
     removeCard: removeCard,
     adjustPoints: adjustPoints,

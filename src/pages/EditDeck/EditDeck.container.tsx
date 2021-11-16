@@ -14,9 +14,10 @@ import { BREAK_POINT } from "../../assets/constants";
 const MainContainer = styled.div`
   display: flex;
   flex-direction: row;
+  width: 100%;
   gap: 64px;
 
-  @media (max-width: ${BREAK_POINT.medium}) {
+  @media (max-width: ${BREAK_POINT.large}) {
     flex-direction: column;
     gap: 32px;
   }

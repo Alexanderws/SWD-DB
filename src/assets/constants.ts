@@ -3,10 +3,11 @@ export const COLOR = {
   blackMuted: "#1D1D1B",
   blueFaction: "#0b609e",
   blueFactionDark: "#094B7C",
-  blueMarine: "#234B5B",
+  blueMarine: "#065b6f",
   brownLeather: "#412F2E",
-  gray: "#999",
-  grayBright: "#f4f4f4",
+  gray: "#D1CCC9",
+  grayLight: "#b1b0af",
+  grayDark: "#676564",
   grayFaction: "#979d9f",
   grayFactionDark: "#62686A",
   redEspresso: "#511520",
@@ -17,19 +18,25 @@ export const COLOR = {
   yellowSoft: "#ECCD54",
   white: "#fff",
   whitePearl: "#F4F4F1",
+  orange: "#BC793A",
 };
 
 export const SEMANTIC_COLOR = {
-  background: COLOR.whitePearl,
   textDark: COLOR.blackMuted,
   textBright: COLOR.white,
-  buttonPrimary: COLOR.blueFactionDark,
+  buttonPrimary: COLOR.blackMuted,
   buttonSecondary: COLOR.blueFactionDark,
-  buttonCancel: COLOR.blueFactionDark,
+  buttonCancel: COLOR.whitePearl,
   buttonDestructive: COLOR.redEspresso,
+  background: COLOR.whitePearl,
+  header: COLOR.blueFactionDark,
+  footer: COLOR.gray,
+  infoBox: COLOR.gray,
+  actionBox: COLOR.blueFactionDark,
 };
 
 export const FONT_SIZE = {
+  xLarge: "1.375rem",
   large: "1.125rem",
   medium: "0.875rem",
   default: "0.875rem",
@@ -37,6 +44,7 @@ export const FONT_SIZE = {
 };
 
 export const BREAK_POINT = {
+  xLarge: "1200px",
   large: "1024px",
   medium: "768px",
 };

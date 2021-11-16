@@ -114,7 +114,7 @@ const CardTable: React.FC<{ cards: Card[] }> = ({ cards }) => {
   };
 
   return (
-    <table style={{ width: "100%" }}>
+    <table style={{ maxWidth: "608px", width: "100%" }}>
       <thead>
         <tr>
           <THCell>
@@ -197,7 +197,9 @@ const CardTable: React.FC<{ cards: Card[] }> = ({ cards }) => {
               <TDCell>{card.has_die && <DiceIcon />}</TDCell>
               <TDCell>{card.cost ?? card.points ?? 0}</TDCell>
               <TDCell>{card.health ?? ""}</TDCell>
-              <TDCell>{card.type_code}</TDCell>
+              <TDCell>
+                <span className={`icon-${card.type_code}`}></span>
+              </TDCell>
               <TDCell>
                 <FactionIcon
                   style={{

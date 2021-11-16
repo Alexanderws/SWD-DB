@@ -1,12 +1,15 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 
+import { Character } from "../../types/index";
 import { COLOR, FONT_SIZE } from "../../assets/constants";
 import { getFactionColor } from "../../assets/utils";
 import { DeckContext } from "../../context/Deck.context";
+import { getImageUrl } from "../../api/fireBase";
 
 import { Column, Heading2 } from "../../components/Common.component";
 import DiceIcon from "../../components/DiceIcon.component";
+import { url } from "inspector";
 
 const CharacterRow = styled.div`
   display: flex;
@@ -39,6 +42,8 @@ const SubTitle = styled.div`
 `;
 
 const ImageContainer = styled.div`
+  background-size: 175px 244px;
+  background-position: -38px -36px;
   background-color: transparent;
   border: 2px solid white;
   border-radius: 4px;
@@ -100,6 +105,59 @@ const PointsButton = styled.input`
       : ""};
 `;
 
+const CharacterCard: React.FC<{
+  character: Character;
+  characterIndex: number;
+}> = ({ character, characterIndex }) => {
+  const [imageUrl, setImageUrl] = useState("");
+  const { adjustPoints } = useContext(DeckContext);
+
+  useEffect(() => {
+    getImageUrl(character.card.set_code, character.card.code).then((url) => {
+      setImageUrl(url);
+    });
+  }, [character]);
+
+  const color = getFactionColor(character.card.faction_code);
+
+  return (
+    <CharacterContainer
+      key={`${character.card.name}${characterIndex}`}
+      style={{ backgroundColor: color }}
+    >
+      <Title>{character.card.name}</Title>
+      {character.card.subtitle && (
+        <SubTitle>{character.card.subtitle}</SubTitle>
+      )}
+      <Column>
+        <ImageContainer style={{ backgroundImage: `url(${imageUrl})` }}>
+          {character.card.has_die && (
+            <DiceContainer>
+              {character.count}
+              <DiceIcon />
+            </DiceContainer>
+          )}
+        </ImageContainer>
+        <PointsRowContainer>
+          {character.pointsArray.map((points, pointsIndex) => {
+            return (
+              <PointsButton
+                key={`${character.card.name}${characterIndex}${pointsIndex}`}
+                onClick={() => {
+                  adjustPoints(characterIndex, pointsIndex + 1);
+                }}
+                value={points}
+                readOnly
+                defaultChecked={character.count - 1 === pointsIndex}
+              />
+            );
+          })}
+        </PointsRowContainer>
+      </Column>
+    </CharacterContainer>
+  );
+};
+
 const Characters: React.FC = () => {
   const { activeDeck, adjustPoints } = useContext(DeckContext);
 
@@ -108,42 +166,11 @@ const Characters: React.FC = () => {
       <Heading2>CHARACTERS</Heading2>
       <CharacterRow>
         {activeDeck.characters.map((character, characterIndex) => {
-          const color = getFactionColor(character.card.faction_code);
           return (
-            <CharacterContainer
-              key={`${character.card.name}${characterIndex}`}
-              style={{ backgroundColor: color }}
-            >
-              <Title>{character.card.name}</Title>
-              {character.card.subtitle && (
-                <SubTitle>{character.card.subtitle}</SubTitle>
-              )}
-              <Column>
-                <ImageContainer>
-                  {character.card.has_die && (
-                    <DiceContainer>
-                      {character.count}
-                      <DiceIcon />
-                    </DiceContainer>
-                  )}
-                </ImageContainer>
-                <PointsRowContainer>
-                  {character.pointsArray.map((points, pointsIndex) => {
-                    return (
-                      <PointsButton
-                        key={`${character.card.name}${characterIndex}${pointsIndex}`}
-                        onClick={() => {
-                          adjustPoints(characterIndex, pointsIndex + 1);
-                        }}
-                        value={points}
-                        readOnly
-                        defaultChecked={character.count - 1 === pointsIndex}
-                      />
-                    );
-                  })}
-                </PointsRowContainer>
-              </Column>
-            </CharacterContainer>
+            <CharacterCard
+              character={character}
+              characterIndex={characterIndex}
+            />
           );
         })}
       </CharacterRow>

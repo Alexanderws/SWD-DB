@@ -4,6 +4,7 @@ import styled, { StyledComponent } from "styled-components";
 import { COLOR, FONT_SIZE } from "../../assets/constants";
 import { Card } from "../../types/index";
 
+import { Row } from "../../components/Common.component";
 import CardTable from "./CardTable.component";
 
 export const SegmentedButton: StyledComponent<
@@ -30,11 +31,15 @@ export const SegmentedButton: StyledComponent<
     border-right: solid 1px ${COLOR.black};
   }
   &:disabled {
-    color: ${COLOR.gray};
-    border: solid 1px ${COLOR.gray};
+    color: ${COLOR.grayDark};
+    border: solid 1px ${COLOR.grayDark};
     ${({ defaultChecked }) =>
       defaultChecked
-        ? "color: " + COLOR.white + "; background-color: " + COLOR.gray + ";"
+        ? "color: " +
+          COLOR.white +
+          "; background-color: " +
+          COLOR.grayDark +
+          ";"
         : ""};
   }
   ${({ defaultChecked }) =>
@@ -122,35 +127,37 @@ const CardCollection: React.FC<{ cards: Card[] }> = ({ cards }) => {
 
   return (
     <div>
-      <div>
-        {AFFILIATIONS.map((affiliation) => {
-          return (
-            <SegmentedButton
-              key={affiliation}
-              type="button"
-              name={affiliation}
-              value={affiliation}
-              onClick={handleAffiliationClick}
-              defaultChecked={selectedAffiliations.includes(affiliation)}
-            />
-          );
-        })}
-      </div>
-      <div>
-        {FACTIONS.map((faction) => {
-          return (
-            <SegmentedButton
-              key={faction}
-              type="button"
-              name={faction}
-              value={faction}
-              onClick={handleFactionClick}
-              defaultChecked={selectedFactions.includes(faction)}
-            />
-          );
-        })}
-      </div>
-      <div>
+      <Row style={{ marginBottom: "8px" }}>
+        <div style={{ marginRight: "8px" }}>
+          {AFFILIATIONS.map((affiliation) => {
+            return (
+              <SegmentedButton
+                key={affiliation}
+                type="button"
+                name={affiliation}
+                value={affiliation}
+                onClick={handleAffiliationClick}
+                defaultChecked={selectedAffiliations.includes(affiliation)}
+              />
+            );
+          })}
+        </div>
+        <div>
+          {FACTIONS.map((faction) => {
+            return (
+              <SegmentedButton
+                key={faction}
+                type="button"
+                name={faction}
+                value={faction}
+                onClick={handleFactionClick}
+                defaultChecked={selectedFactions.includes(faction)}
+              />
+            );
+          })}
+        </div>
+      </Row>
+      <div style={{ marginBottom: "16px" }}>
         {TYPES.map((type) => {
           return (
             <SegmentedButton

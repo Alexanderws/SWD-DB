@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import { COLOR, SEMANTIC_COLOR, FONT_SIZE } from "../assets/constants";
 
-const ButtonContainer = styled.div`
+const ButtonContainer = styled.button`
   padding: 0 16px;
   height: 38px;
   line-height: 38px;

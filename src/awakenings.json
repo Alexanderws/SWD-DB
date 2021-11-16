@@ -2253,7 +2253,7 @@
       "points": "2",
       "position": 113,
       "rarity_code": "S",
-      "set_code": "CM",
+      "set_code": "CONV",
       "text": "<b>Action</b> - Set this plot aside to turn a die to any side.",
       "ttscardid": "50042",
       "type_code": "plot"
@@ -2271,7 +2271,7 @@
       "points": "2",
       "position": 114,
       "rarity_code": "U",
-      "set_code": "LEG",
+      "set_code": "CONV",
       "text": "Bring up to 2 different <i>move</i> events to the game and place them facedown under this plot <em>(ignoring deckbuilding restrictions)</em>.\n<b>Action</b> - Exhaust this plot to play an event from under it, then set that event aside.",
       "ttscardid": "50043",
       "type_code": "plot"
@@ -2630,7 +2630,7 @@
       "points": "2",
       "position": 133,
       "rarity_code": "U",
-      "set_code": "EAW",
+      "set_code": "CONV",
       "text": "You may resolve your <i>trooper</i> dice showing a blank ([blank]) as if they were indirect damage ([indirect]) that have a value of 1.",
       "ttscardid": "50062",
       "type_code": "plot"
@@ -2981,7 +2981,7 @@
       "points": "2",
       "position": 151,
       "rarity_code": "U",
-      "set_code": "EAW",
+      "set_code": "CONV",
       "text": "After one of your <i>scoundrel</i> dice rolls a side showing a resource ([resource]), you may resolve it.",
       "ttscardid": "50110",
       "type_code": "plot"
