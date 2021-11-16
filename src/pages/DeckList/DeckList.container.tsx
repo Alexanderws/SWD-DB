@@ -10,7 +10,6 @@ import { getDecks } from "../../api/fireBase";
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   align-items: flex-start;
 `;
 
@@ -41,15 +40,12 @@ const DeckList = () => {
     return <div>VENT...</div>;
   }
 
-  console.log("data:", decks);
-
   return (
     <Container>
-      <Column>
+      <Column style={{ marginBottom: "64px" }}>
         <Heading2>Your decks</Heading2>
         <ul>
           {decks?.map((deck) => {
-            console.log("deck:", deck);
             return <li>{deck.name}</li>;
           })}
         </ul>

@@ -34,7 +34,7 @@ const CardModal: React.FC = () => {
   const { isVisible, cardToShow } = useContext(ModalContext);
 
   useEffect(() => {
-    if (cardToShow) {
+    if (cardToShow.name.length > 0) {
       getImageUrl(cardToShow.set_code, cardToShow.code).then((url) => {
         setImageUrl(url);
       });

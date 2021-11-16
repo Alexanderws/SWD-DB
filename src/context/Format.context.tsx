@@ -21,10 +21,8 @@ export const FormatContextProvider: React.FC = (props) => {
   const [allSets, setAllSets] = useState<DestinySet[]>([]);
 
   useEffect(() => {
-    console.log("FormatContext - useEffect");
     getFormats()
       .then((formats) => {
-        console.log("FormatContext - getFormats:", formats);
         setAllFormats(formats);
       })
       .catch((error) => {
@@ -32,7 +30,6 @@ export const FormatContextProvider: React.FC = (props) => {
       });
     getSets()
       .then((sets) => {
-        console.log("FormatContext - getSets:", sets);
         setAllSets(sets);
       })
       .catch((error) => {
