@@ -22,6 +22,7 @@ export const COLOR = {
 };
 
 export const SEMANTIC_COLOR = {
+  accent: COLOR.blueFactionDark,
   textDark: COLOR.blackMuted,
   textBright: COLOR.white,
   buttonPrimary: COLOR.blackMuted,

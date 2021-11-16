@@ -5,6 +5,9 @@ import { Link } from "react-router-dom";
 import { COLOR, FONT_SIZE, SEMANTIC_COLOR } from "../assets/constants";
 
 import DagobahIcon from "../components/DagobahIcon.component";
+import DeckIcon from "../components/DeckIcon.component";
+import CollectionIcon from "../components/CollectionIcon.component";
+import DeckListIcon from "../components/DeckListIcon.component";
 import { Column, Row } from "../components/Common.component";
 import { AuthContext } from "../context/Auth.context";
 
@@ -32,6 +35,8 @@ const StyledLink = styled(Link)`
   font-size: ${FONT_SIZE.default};
   font-weight: 600;
   text-decoration: none;
+  display: flex;
+  align-items: center;
 
   :hover {
     text-decoration: underline;
@@ -47,9 +52,18 @@ const Header = () => {
         <DagobahIcon />
         <Title>DAGOBAH</Title>
       </Row>
-      <StyledLink to="/decks">MY DECKS</StyledLink>
-      <StyledLink to="/collection">MY COLLECTION</StyledLink>
-      <StyledLink to="/decklists">DECKLISTS</StyledLink>
+      <StyledLink to="/decks">
+        <DeckIcon style={{ marginRight: "4px", marginBottom: "-2px" }} />
+        MY DECKS
+      </StyledLink>
+      <StyledLink to="/collection">
+        <CollectionIcon style={{ marginRight: "4px", marginBottom: "-2px" }} />
+        MY COLLECTION
+      </StyledLink>
+      <StyledLink to="/decklists">
+        <DeckListIcon style={{ marginRight: "4px", marginBottom: "-2px" }} />
+        DECKLISTS
+      </StyledLink>
       {activeUser ? (
         <Column>
           <span>{activeUser.email}</span>
