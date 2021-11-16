@@ -46,7 +46,7 @@ const DeckList = () => {
         <Heading2>Your decks</Heading2>
         <ul>
           {decks?.map((deck) => {
-            return <li>{deck.name}</li>;
+            return <Link to={`/deck/${deck.id}`}>{deck.name}</Link>;
           })}
         </ul>
       </Column>

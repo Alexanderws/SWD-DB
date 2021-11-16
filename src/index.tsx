@@ -59,7 +59,14 @@ ReactDOM.render(
                       path="/"
                       element={<SigninSignupPage signIn={false} />}
                     />
-                    <Route path="deck" element={<EditDeckPage />} />
+                    <Route
+                      path="deck"
+                      element={<EditDeckPage isNew={true} />}
+                    />
+                    <Route
+                      path="deck/:deckId"
+                      element={<EditDeckPage isNew={false} />}
+                    />
                     <Route
                       path="signin"
                       element={<SigninSignupPage signIn={true} />}

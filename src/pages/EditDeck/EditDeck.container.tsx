@@ -31,7 +31,8 @@ const RightContainer = styled.div`
   width: 100%;
 `;
 
-const EditDeckPage: React.FC = () => {
+const EditDeckPage: React.FC<{ isNew: boolean }> = ({ isNew }) => {
+  // console.log(isNew);
   // const { isLoading, isError, data: allCards } = useQuery("cards", fetchCards);
 
   // if (isLoading) {
